@@ -12,7 +12,7 @@ end
 
 return {
   patterns = {
-  "^(dlplug) (.*)$"
+  "^#(getplug) (.*)$"
   },
   run = run
 }
