@@ -1,39 +1,3 @@
--- webshot--
-local helpers = require "OAuth.helpers"
-local base = 'https://screenshotmachine.com/'
-local url = base .. 'processor.php'
-
-local function get_webshot_url(param)
-   local response_body = {}
-   local request_constructor = {
-      url = url,
-      method = "GET",
-      sink = ltn12.sink.table(response_body),
-      headers = {
-         referer = base,
-         dnt = "1",
-         origin = base,
-         ["User-Agent"] = "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
-      },
-      redirect = false
-   }
-
-   local arguments = {
-      urlparam = param,
-      size = "FULL"
-   }
-
-   request_constructor.url = url .. "?" .. helpers.url_encode_arguments(arguments)
-
-   local ok, response_code, response_headers, response_status_line = https.request(request_constructor)
-   if not ok or response_code ~= 200 then
-      return nil
-   end
-
-   local response = table.concat(response_body)
-   return string.match(response, "href='(.-)'")
-end
-
 --set--
 local function save_value(msg, name, value)
   if (not name or not value) then
@@ -51,7 +15,7 @@ local function save_value(msg, name, value)
   end
   if hash then
     redis:hset(hash, name, value)
-    return "Saved "..name.." 👉 "..value
+    return "Saved "..name.." ðŸ‘ "..value
   end
 end
 --get--
@@ -196,11 +160,11 @@ local function stringlinks(results)
   return stringresults
 end
 local function run(msg, matches)
-   if matches[1] == 'google' and is_sudo(msg) then
+   if matches[1] == 'google' then
   local results = googlethat(matches[1])
-  return 'نتایج جستجو\n\n'..stringlinks(results)
+  return 'Ù†ØªØ§ÛŒØ¬ Ø¬Ø³ØªØ¬Ùˆ\n\n'..stringlinks(results)
 end
-   if matches[1] == 'webshot' and is_sudo(msg) then
+   if matches[1] == 'webshot' then
    local find = get_webshot_url(matches[2])
    if find then
       local imgurl = base .. find
@@ -208,14 +172,14 @@ end
       send_photo_from_url(receiver, imgurl)
    end
 end
-if matches[1] == 'sticker' and is_sudo(msg) then
+if matches[1] == 'sticker' then
   local texturl = "http://latex.codecogs.com/png.download?".."\\dpi{800}%20\\LARGE%20"..URL.escape(matches[2])
   local receiver = get_receiver(msg)
   local file = download_to_file(texturl,'text.webp')
       send_document('chat#id'..msg.to.id, file, ok_cb , false)
       send_document('channel#id'..msg.to.id, file, ok_cb , false)
 end
-   if matches[1] == 'voice' and is_sudo(msg) then
+   if matches[1] == 'voice' then
   local voiceapi = "http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&text="..URL.escape(matches[2])
   local receiver = get_receiver(msg)
   local file = download_to_file(voiceapi,'text.ogg')
@@ -249,17 +213,18 @@ return {
   description = "funny plugin",
   usage = "see commands in patterns",
   patterns = {
-    "^#(google) (.*)$",
-    "^#(webshot) (https?://[%w-_%.%?%.:/%+=&]+)$",
-    "^#(voice) (.+)$",
-   "^#(insta) ([Hh]ttps://www.instagram.com/p/)([^%s]+)$",
-   "^#(insta) ([Hh]ttps://instagram.com/p/)([^%s]+)$",
-   "^#(insta) ([Hh]ttp://www.instagram.com/p/)([^%s]+)$",
-   "^#(insta) ([Hh]ttp://instagram.com/p/)([^%s]+)$",
-   "^#(insta) (.*)$",    
-   "^#(set) ([^%s]+) (.*)$",
-   "^#(get) (.*)$",
-   "^#(sticker) (.*)$",
+    "^(google) (.*)$",
+    "^(webshot) (https?://[%w-_%.%?%.:/%+=&]+)$",
+    "^(voice) (.+)$",
+   "^(insta) ([Hh]ttps://www.instagram.com/p/)([^%s]+)$",
+   "^(insta) ([Hh]ttps://instagram.com/p/)([^%s]+)$",
+   "^(insta) ([Hh]ttp://www.instagram.com/p/)([^%s]+)$",
+   "^(insta) ([Hh]ttp://instagram.com/p/)([^%s]+)$",
+   "^(insta) (.*)$",    
+   "^(set) ([^%s]+) (.*)$",
+   "^(get) (.*)$",
+   "^(sticker) (.*)$",
     },
   run = run
 }
+
