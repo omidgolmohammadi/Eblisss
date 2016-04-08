@@ -5,7 +5,24 @@ A Telegram Bot based on DBTeam bot
 
 #Installation
 
-Only on Telegram Channel: [Installation](https://telegram.me/TitanTeam/248)
+```bash
+sudo apt-get update
+```
+
+```bash
+sudo apt-get upgrade
+```
+
+```bash
+sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev make unzip git redis-server g++ libjansson-dev libpython-dev expat libexpat1-dev
+```
+```bash
+cd $HOME
+git clone https://github.com/TitanTeamGit/SelfBot.git
+cd SelfBot
+./launch.sh install
+./launch.sh
+```
 
 
 #Special thanks to
