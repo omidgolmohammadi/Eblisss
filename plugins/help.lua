@@ -1,7 +1,7 @@
 do
     
 function run(msg, matches)
-  local help = [[Self-Bot Commands
+  local help = [[freeze_bot Commands
 
 ●#bot on
 فعال کردن بوت در یک گروه خواص
@@ -89,7 +89,12 @@ function run(msg, matches)
 
 .......................................
 📡
-- @TitanTeam
+sudo users:
+@heset_ni_zendgi
+@Xx_admin_eblis_x
+
+-our chanal: @eblis_unity
+GOOD LUCK
 .......................................]]
     if matches[1] == 'help' and is_sudo(msg) then
       send_large_msg("user#id"..msg.from.id, help)      
