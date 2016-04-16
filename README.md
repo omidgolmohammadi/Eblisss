@@ -1,4 +1,4 @@
-#TitanTeam SelfBot
+#eblis team...freeze bot
 
 A Telegram Bot based on DBTeam bot
 
@@ -18,8 +18,8 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 ```
 ```bash
 cd $HOME
-git clone https://github.com/TitanTeamGit/SelfBot.git
-cd SelfBot
+git clone https://github.com/omidgolmoammadi/eblisss.git
+cd eblisss
 ./launch.sh install
 ./launch.sh
 ```
@@ -30,12 +30,12 @@ cd SelfBot
 - BeatBotTeam _For Edit & Open This Source_
 
 
-#Our Team!
+#Our id:
 
-- TahaDev
-- UziDev
-- Dimon_Dev
+@heset_ni_zendgi
+@Xx_admin_eblis_xX
+
 
 #Our Telegram Channel
 
-[TitanTeam](https://telegram.me/joinchat/CTTyPD3byj9F9bxmsLdRiA) On [Telegram](https://telegram.org)
+[eblisTeam]) On [Telegram] (@eblis_unity)
